@@ -1,0 +1,4 @@
+"view_history","rt","trial_type","trial_index","time_elapsed","internal_node_id","subject","responses","stimulus","key_press"
+"[{""page_index"":0,""viewing_time"":1182}]","1183","instructions","0","1185","0.0-0.0","666","","",""
+"","22493","survey-likert","1","23683","0.0-1.0","666","{""Q0"":0,""Q1"":0,""Q2"":0,""Q3"":0,""Q4"":0,""Q5"":0,""Q6"":0,""Q7"":0,""Q8"":0,""Q9"":0,""Q10"":0,""Q11"":0,""Q12"":0,""Q13"":0}","",""
+"","3003","html-keyboard-response","2","26687","0.0-2.0","666","","<p>You scored a [object Object] on the BAIS-V scale.</p><p>You scored a [object Object] on the BAIS-V scale.</p><p>Press any key to complete the experiment. Thank you!</p>","32"
