@@ -16,31 +16,107 @@
 # Uncomment and set path for example files.
 #setwd("../data")
 
-score.directory <- function(fns=list.files(pattern=".csv")){
+# Libraries Needed
+library(stringr)
+
+# Only run on files if they were one! 
+score.bais.c <- function(fns=list.files(pattern=".csv")){
   
   # Set up the For Loop to score all of the .csv files in the directory
   for(i in seq(along=fns)){
     
-    tmp.dat <- read.csv(fns[i])
+    tmp.dat <- read.csv(fns[i], stringsAsFactors = FALSE)
     print(paste("Now Working On File",fns[i]))
     
-    ## tmp.dat <- read.csv("HIGH.csv") # Line for Debugging 
+    # tmp.dat <- read.csv("666.csv",stringsAsFactors = FALSE) # Line for Debugging 
+    subjectNo <- tmp.dat[1,7]
+    Condition <- "BAIS-C"
     
+    baisData <- tmp.dat[2,8]
+    baisDigitsColon <- unlist(str_extract_all(baisData,":[0-9]"))
+    baisDigits <- str_replace_all(baisDigitsColon,":","")
+    baisVector <- as.numeric(baisDigits)
+    javascriptSucks <- baisVector + 1
+    baisScore <- mean(javascriptSucks)
+      
+    finalScores <- cbind(subjectNo, baisScore, Condition)
     
-    finalScores1 <- cbind(subjNo,ACTIVE,PERCEPTUAL,MUSICAL,SINGING,EMOTIONS,GENERAL,
-                          Instrument, occStats, Genre, edAttain, edExpected,
-                          Age, Gender, Nationality, Formative, CurrentCountry, individual_responses)
-    
-    write.table(finalScores1,paste0(substr(fns[i],1,nchar(fns[i])-4),"_data.csv"),sep=",",col.names=TRUE,row.names=FALSE)
+    write.table(finalScores,paste0(substr(fns[i],1,nchar(fns[i])-4),"c_data.csv"),sep=",",col.names=TRUE,row.names=FALSE)
     
   }
 }
+
+# This is same as bais.c just fyi 
+score.bais.v <- function(fns=list.files(pattern=".csv")){
+  
+  # Set up the For Loop to score all of the .csv files in the directory
+  for(i in seq(along=fns)){
+    
+    tmp.dat <- read.csv(fns[i], stringsAsFactors = FALSE)
+    print(paste("Now Working On File",fns[i]))
+    
+    # tmp.dat <- read.csv("666.csv",stringsAsFactors = FALSE) # Line for Debugging 
+    subjectNo <- tmp.dat[1,7]
+    Condition <- "BAIS-V"
+    
+    
+    baisData <- tmp.dat[2,8]
+    baisDigitsColon <- unlist(str_extract_all(baisData,":[0-9]"))
+    baisDigits <- str_replace_all(baisDigitsColon,":","")
+    baisVector <- as.numeric(baisDigits)
+    javascriptSucks <- baisVector + 1
+    baisScore <- mean(javascriptSucks)
+    
+    finalScores <- cbind(subjectNo, baisScore,Condition)
+    
+    write.table(finalScores,paste0(substr(fns[i],1,nchar(fns[i])-4),"_v_data.csv"),sep=",",col.names=TRUE,row.names=FALSE)
+    
+  }
+}
+
+
+score.bais.both <- function(fns=list.files(pattern=".csv")){
+  
+  # Set up the For Loop to score all of the .csv files in the directory
+  for(i in seq(along=fns)){
+    
+    tmp.dat <- read.csv(fns[i], stringsAsFactors = FALSE)
+    print(paste("Now Working On File",fns[i]))
+    
+    # tmp.dat <- read.csv("666.csv",stringsAsFactors = FALSE) # Line for Debugging 
+    subjectNo <- tmp.dat[1,7]
+    
+    
+    Condition <- "BAIS-BOTH"
+    
+    baisDataV <- tmp.dat[2,8]
+    baisDigitsColonV <- unlist(str_extract_all(baisDataV,":[0-9]"))
+    baisDigitsV <- str_replace_all(baisDigitsColonV,":","")
+    baisVectorV <- as.numeric(baisDigitsV)
+    javascriptSucksV <- baisVectorV + 1
+    baisScoreV <- mean(javascriptSucksV)
+    
+    baisDataC <- tmp.dat[3,8]
+    baisDigitsColonC <- unlist(str_extract_all(baisDataC,":[0-9]"))
+    baisDigitsC <- str_replace_all(baisDigitsColonC,":","")
+    baisVectorC <- as.numeric(baisDigitsC)
+    javascriptSucksC <- baisVectorC + 1
+    baisScoreC <- mean(javascriptSucksC)
+    
+    
+    finalScores <- cbind(subjectNo, baisScoreV,baisScoreC,Condition)
+    
+    write.table(finalScores,paste0(substr(fns[i],1,nchar(fns[i])-4),"_combined_data.csv"),sep=",",col.names=TRUE,row.names=FALSE)
+    
+  }
+}
+
 
 ## Once you run score.directory(), run this! 
 
 create.dataset <- function(){
   filenames <- list.files(pattern = "data")
   bigdata <- do.call("rbind", lapply(filenames, read.csv, header = TRUE))
-  write.csv(bigdata,"Gold_MSI_combined_data_with_Indvidual_Responses.csv")
+  write.csv(bigdata,"BAIS-Data.csv")
 }
 
