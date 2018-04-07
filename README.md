@@ -11,6 +11,8 @@ according to your needs.
 
 After data collection is complete, put all ```.csv``` files in a directory and use the ```analysis/score_bais.R``` script to source the scoring and aggregation functions.
 
+For a quick tutorial check out right [here](https://youtu.be/Yql0jFZkM88).
+
 ## To Do 
 
 * [ ] Add function that multiplies scores by the factor loadings.
