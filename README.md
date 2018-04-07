@@ -3,9 +3,9 @@
 Here you can find a [jsPsych](www.jspsych.org), browser-based implementation of the [Bucknell Auditory Imagery Scale](https://search.proquest.com/docview/1712713310?pq-origsite=gscholar).
 In order to run the program open either
 
-* For BAIS-C run ```bais/bais-c.html
-* For BAIS-V run ```bais/bais-v.html
-* For both run ```bais/bais.html
+* For BAIS-C run ```bais/bais-C.html```
+* For BAIS-V run ```bais/bais-V.html```
+* For both run ```bais/bais.html```
 
 according to your needs.
 
