@@ -6,7 +6,7 @@
 #--------------------------------------------------
 # To use this script just point the script at the directory containing your raw CSV files.
 # Click "Source" at the top right panel of this screen (in RStudio)
-# then run the score.directory() function. This will create individual aggregated files
+# then run the the relevant scoring function. This will create individual aggregated files
 # for each of your participants. To combine them all, run the create.dataset()
 # function. Note that ONLY the _data files should be in the
 # directory that the create.dataset() function is pointing to.
@@ -14,7 +14,7 @@
 #======================================================================================================
 
 # Uncomment and set path for example files.
-#setwd("../data")
+setwd("../data")
 
 # Libraries Needed
 library(stringr)
